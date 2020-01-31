@@ -40,6 +40,10 @@ I also need to investigate how we might deploy the built Storybook to an interna
 
 ----
 
+## To install 
+
+Clone the repo and run `npm install`. 
+
 ## To build
 
 To build both styles and storybook in parallel, use the command `npm run-script dev`
