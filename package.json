@@ -4,11 +4,17 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@storybook/addon-info": "^5.3.9",
+    "@storybook/addon-storysource": "^5.3.9",
     "gulp": "^4.0.2",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "^4.0.2",
+    "@storybook/addon-actions": "^5.3.9"
   },
   "devDependencies": {
     "@babel/core": "^7.8.3",
+    
+    "@storybook/addon-docs": "^5.3.9",
+    "@storybook/addon-knobs": "^5.3.9",
     "@storybook/html": "^5.3.9",
     "babel-loader": "^8.0.6",
     "npm-run-all": "^4.1.5"
