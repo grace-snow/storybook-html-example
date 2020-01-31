@@ -1,0 +1,25 @@
+/*--------------------------------
+ * Bootstrap overrides
+--------------------------------*/
+
+/*
+ * Include any bootstrap-specific classes here that we want to alter
+*/
+
+// Move .list-group-item classes from agency2016
+
+
+legend {
+  border-bottom: none !important;
+}
+
+.row {
+  margin-left: auto !important;   // revert unsupported in IE11
+  margin-right: auto !important;  // revert unsupported in IE11
+}
+
+.form-control:focus {
+  @include focus;
+  outline-offset: -2px;
+  box-shadow: none;
+}  

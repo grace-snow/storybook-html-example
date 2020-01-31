@@ -1,0 +1,92 @@
+/*--------------------------------
+ * Grid
+--------------------------------*/
+
+// See docs at https://github.com/Heydon/fukol-grids
+// Modify grid items' 'flex-basis' value in other scss files to decide roughly how wide those items should be (5em in the example — the flex basis). 
+// Grid items can grow to use the available space but not shrink.
+.fukol-grid {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  margin: -$base-spacing-unit;
+
+  & > * {
+    flex: 1 0 50%; // Edit flex basis as needed at item level
+    padding: $base-spacing-unit;
+
+    &:last-child > *:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.fukol-grid--small {
+  margin: -$small-spacing-unit;
+  & > * {
+    padding: $small-spacing-unit;
+  }
+}
+
+.fukol-grid--tiny {
+  margin: -$tiny-spacing-unit;
+  & > * {
+    padding: $tiny-spacing-unit;
+  }
+}
+
+$widths: (
+  'one-tenth':      10%,
+  'one-eighth':     12.5%,
+  'one-fifth':      20%,
+  'one-quarter':    25%,
+  'one-third':      33%,
+  'one-half':       50%,
+  'three-fifths':   60%,
+  'two-thirds':     66%,
+  'three-quarters': 75%,
+  'four-fifths':    80%,
+  'one-whole':      100%
+);
+
+// Grid item ideal sizes at different breakpoints
+.fukol-grid {
+  // creates classes like `one-half` `one-quarter` etc
+  @each $fraction, $width in $widths {
+    .#{$fraction} {
+      @include flex-basis($width);
+      max-width: $width;
+    }
+  }
+  @include media-up(tiny) {
+    @each $fraction, $width in $widths {
+      .#{$fraction}--tiny-up {
+        @include flex-basis($width);
+        max-width: $width;
+      }
+    }
+  }
+  @include media-up(small) {
+    @each $fraction, $width in $widths {
+      .#{$fraction}--small-up {
+        @include flex-basis($width);
+        max-width: $width;
+      }
+    }
+  }
+  @include media-up(medium) {
+    @each $fraction, $width in $widths {
+      .#{$fraction}--medium-up {
+        @include flex-basis($width);
+        max-width: $width;
+      }
+    }
+  }
+  @include media-up(large) {
+    @each $fraction, $width in $widths {
+      .#{$fraction}--large-up {
+        @include flex-basis($width);
+        max-width: $width;
+      }
+    }
+  }
+}

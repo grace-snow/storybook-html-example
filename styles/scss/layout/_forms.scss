@@ -1,0 +1,404 @@
+/*--------------------------------
+ * Forms
+--------------------------------*/
+
+@import '../vendors/select-css';
+@import '../vendors-extensions/select-css-ext';
+
+.form {
+  font-size: 16px;
+  font-family: $font;
+
+  &--480 {
+    max-width: map-get($breakpoints,'small');
+  }
+
+  p,
+  ul,
+  .form-guidance {
+    font-size: $base-font-size;
+  }
+
+  h2 {
+    font-size: $h3-size;
+  }
+
+  &--center {
+    @include auto--sides;
+  }
+
+  &__section {
+    position: relative;
+    padding-top: $large-spacing-unit;
+    padding-bottom: $large-spacing-unit;
+
+    &:after {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 2px;
+      background-color: $ui-grey;
+      content: '';
+    }
+
+    &.no-form-divider:after {
+      content: none;
+    }
+
+    .form__input-wrapper:first-of-type {
+      margin-top: 20px;
+    }
+  }
+
+  fieldset {
+    padding: 0;
+    border: none;
+  }
+
+  input,
+  select,
+  textarea {
+    padding: $small-spacing-unit;
+    border: 2px solid darken($ui-grey,18);
+    border-radius: $radius;
+    box-shadow: none;
+    color: $color-darktext;
+    font: inherit;
+    resize: none;
+
+    ~ button {
+      margin-top: $small-spacing-unit;
+    }
+
+    &::-ms-clear {
+      // Remove IE's X clear on inputs
+      @media all and (-ms-high-contrast:none) {
+        display: none;
+      }
+      // Remove Edge's X clear on inputs
+      @supports (-ms-ime-align:auto) {
+        display: none;
+      }
+    }
+
+    &:disabled,
+    &[aria-disabled=true] {
+      @include disabled;
+      border-color: darken($ui-grey,5) !important;
+      background-color: $ui-grey;
+      color: darken($ui-grey,30);
+      cursor: default;
+    }
+
+    &:focus {
+      @include focus;
+      outline-offset: -2px;
+      // background-color: $bg-grey;
+    }
+  }
+
+  input[type='password']::ms-reveal {
+    // Remove IE's X clear on inputs
+    @media all and (-ms-high-contrast:none) {
+      display: none;
+    }
+    // Remove Edge's X clear on inputs
+    @supports (-ms-ime-align:auto) {
+      display: none;
+    }
+  }
+
+  input {
+    padding-right: $large-spacing-unit;
+    line-height: $small-line-height;
+
+    &--no-validation {
+      padding-right: $small-spacing-unit;
+    }
+  }
+
+  &--no-validation input {
+    padding-right: $small-spacing-unit;
+  }
+
+  select {
+    padding-right: $base-spacing-unit;
+    min-height: 43px;
+    line-height: $small-line-height;
+  }
+
+  &__input-wrapper {
+    @include flexbox;
+    @include flex-direction(column);
+    position: relative;
+    margin-top: $large-spacing-unit;
+    margin-bottom: $large-spacing-unit;
+
+
+    &--condensed {
+      margin-top: $small-spacing-unit;
+      margin-bottom: $small-spacing-unit;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__submit-wrapper {
+    @include flexbox;
+    @include flex-direction(column);
+    position: relative;
+    margin-top: $base-spacing-unit;
+    margin-bottom: $huge-spacing-unit;
+  }
+
+  &__terms p {
+    font-size: $smallprint-size;
+  }
+
+  label,
+  legend,
+  *.label-style {
+    display: block;
+    margin-top: 0;
+    margin-bottom: $tiny-spacing-unit;
+    border-bottom: none;
+    color: $color-darktext;
+    font-weight: $weight-bold;
+    font-size: $base-font-size;
+  }
+
+  .inline-selects {
+    @include flexbox;
+
+    > select {
+      flex: 0 1 auto;
+      margin-right: $tiny-spacing-unit;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+
+    &--3 {
+      flex: 0 1 33%;
+    }
+  }
+}
+
+/****************************
+  Custom Checkbox
+*/
+.checkbox-wrapper {
+  position: relative;
+  margin-top: $base-spacing-unit;
+  margin-bottom: $base-spacing-unit;
+
+  // Add padding if checkbox wrapper is a background-color block
+  &[class^='bg--'] {
+    padding: $small-spacing-unit;
+  }
+
+  // Label should look like normal text
+  label {
+    @include flexbox;
+    @include align-items(center);
+    margin-bottom: 0;
+    width: 100%;
+    color: $color-darktext;
+    font-weight: $weight-normal;
+    cursor: pointer;
+  }
+
+  // hide real checkbox
+  input[type='checkbox'] {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 0;
+    min-height: auto;
+    width: auto;
+    height: auto;
+    border: none;
+    opacity: 0;
+
+    &:focus ~ .faux-checkbox {
+      @include focus;
+      outline-offset: -2px;
+    }
+
+    &:checked + span {
+      border-color: darken($color-pinktext,10);
+      background: $color-pinktext;
+
+      &:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Create pretty fake checkbox
+  .faux-checkbox {
+    position: relative;
+    display: inline-block;
+    flex-shrink: 0;
+    margin-right: $small-spacing-unit;
+    width: 30px;
+    height: 30px;
+    border: 2px solid darken($ui-grey,18);
+    border-radius: $radius;
+    background: $white;
+    transition: background-color 0.2s ease, border-color 0.2s ease, border-width 0.2s ease, opacity 0.2s ease;
+  }
+
+  .faux-checkbox::after,
+  span::after {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    width: 14px;
+    height: 6px;
+    border-bottom: 2px solid $white;
+    border-left: 2px solid $white;
+    content: '';
+    opacity: 0;
+    transform: rotate(-45deg) translate(-50%, -50%);
+  }
+}
+
+
+
+//  FORM VALIDATION
+// =============================================
+ul.password-requirements {
+  margin-bottom: $base-spacing-unit;
+  padding-left: 1.75em;
+  list-style: none;
+}
+
+.password-requirements__requirement {
+  position: relative;
+
+  &:before {
+    position: absolute;
+    left: -1.75em;
+    box-sizing: border-box;
+    width: 1.25em;
+    height: 1.25em;
+    border: 1px solid $color-greytext;
+    border-radius: 50%;
+    content: ' ';
+  }
+
+  &--valid {
+    color: $color-positive;
+
+    &:before {
+      border-color: $color-positive;
+    }
+
+    &:after {
+      position: absolute;
+      top: 0.2em;
+      left: calc(-1.75em + 0.2em);
+      display: inline-block;
+      width: 0.8em;
+      height: 0.8em;
+      background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' aria-hidden=\'true\' viewBox=\'0 0 16 16\'%3E%3Cg fill=\'none\' stroke=\'%23078942\' stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'2\'%3E%3Cpath d=\'M5.97 13.52l-3.34-3.34M6 13.55l7.37-11.1\'/%3E%3C/g%3E%3C/svg%3E');
+      background-repeat: no-repeat;
+      content: ' ';
+    }
+  }
+
+  &--invalid {
+    color: $color-negative;
+
+    &:before {
+      border-color: $color-negative;
+    }
+
+    &:after {
+      background-image: none;
+    }
+  }
+}
+
+
+
+// VALIDATION: OTHER FIELDS
+// =============================================
+#pwd-input {
+  background-image: none !important;
+}
+
+input:not([type='radio']),
+select {
+  &.invalid {
+    border-color: $color-negative;
+  }
+
+  &.valid {
+    border-color: $color-positive;
+  }
+}
+
+input:not([type='radio']) {
+  background-position: bottom 0.5em right 0.4em;
+  background-size: 1.5em;
+  background-repeat: no-repeat;
+
+  &.invalid {
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' aria-hidden=\'true\' viewBox=\'0 0 16 16\'%3E%3Cg fill=\'none\' stroke=\'%23db1b1b\'%3E%3Ccircle cx=\'8\' cy=\'8\' r=\'7\' stroke-miterlimit=\'10\'/%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1.5\' d=\'M4.78 4.78l6.44 6.44M4.78 11.22l6.44-6.44\'/%3E%3C/g%3E%3C/svg%3E');
+  }
+
+  &.valid {
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'24\' height=\'24\' aria-hidden=\'true\' viewBox=\'0 0 16 16\'%3E%3Cg fill=\'none\' stroke=\'%23078942\'%3E%3Ccircle cx=\'8\' cy=\'8\' r=\'7\' stroke-miterlimit=\'10\'/%3E%3Cpath stroke-linecap=\'round\' stroke-linejoin=\'round\' stroke-width=\'1.5\' d=\'M6.77 11.34L4.75 9.32M6.79 11.36l4.46-6.72\'/%3E%3C/g%3E%3C/svg%3E');
+  }
+}
+
+
+// OVERRIDES
+// =============================================
+// make YEAR of birth bigger than other selects
+#dobfields select:last-child {
+  flex-grow: 1;
+}
+
+// position show/hide toggle inside password input
+#show-hide-toggle {
+  position: absolute;
+  right: $large-spacing-unit;
+  bottom: 15px;
+  color: $color-pinktext;
+  text-decoration: underline;
+  font-size: $small-font-size;
+}
+
+// give address search input field bg magnifying glass at 480px up screens
+@include media-up(small) {
+  #addresssearch {
+    position: relative;
+    padding-left: 30px;
+    background-image: url('data:image/svg+xml,%3Csvg height=\'35\' width=\'35\' xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3E%3Cpath d=\'M14.63,13.5,12,10.83A6.07,6.07,0,1,0,7.2,13.15a6,6,0,0,0,3.47-1.1l2.7,2.7A.85.85,0,0,0,14,15a.89.89,0,0,0,.63-1.51ZM2.87,7.08A4.33,4.33,0,1,1,7.2,11.4,4.34,4.34,0,0,1,2.87,7.08Z\' style=\'fill:%23bdbdbd\'/%3E%3C/svg%3E');
+    background-position: 0.5em;
+    background-size: 1em;
+    background-repeat: no-repeat;
+  }
+
+  #addresssearch:active,
+  #addresssearch:focus {
+    padding-left: $small-spacing-unit;
+    background-image: none;
+  }
+}
+
+// special style for address results
+#foundAddressWrapper {
+  margin-top: $tiny-spacing-unit;
+  padding: $small-spacing-unit;
+  background: darken($bg-grey, 8); // #e5e5e5
+
+  p {
+    line-height: $small-line-height;
+  }
+}

@@ -1,0 +1,66 @@
+/*--------------------------------
+ * Page Wrapper
+--------------------------------*/
+$page-side-padding: 15px;
+@include media-up(small) {
+  $page-side-padding: $base-spacing-unit;
+}
+
+.page-width {
+  margin: 0 auto;
+  padding: 0 $page-side-padding;
+  max-width: $max-page-width;
+  width: 100%;
+
+  &--600 {
+    max-width: calc(600px + #{($page-side-padding * 2)});
+  }
+
+  &--medium {
+    max-width: calc(#{map-get($breakpoints, 'medium')} + #{($page-side-padding * 2)} );
+  }
+
+  &--small {
+    max-width: calc(#{map-get($breakpoints, 'small')} + #{($page-side-padding * 2)} );
+  }
+}
+
+.section {
+  padding: $base-spacing-unit 0;
+}
+
+.content-section {
+  margin: 30px auto;
+  width: 100%;
+}
+
+// * Wraps around main content on most pages
+// * Optional sidebar
+.content-wrapper {
+  margin-top: $base-spacing-unit;
+  margin-bottom: $base-spacing-unit;
+  padding: $base-spacing-unit;
+
+  &--hard,
+  &.padding--none {
+    padding: 0;
+  }
+
+  &--flex {
+    @include flexbox;
+    @include flex-direction(column);
+    @include media-up(medium) {
+      @include flex-direction(row);
+
+      .content-wrapper__sidebar {
+        display: block;
+        flex: 0 1 25%;
+        padding-right: $base-spacing-unit;
+      }
+
+      .content-wrapper__content {
+        flex: 1 1 75%;
+      }
+    }
+  }
+}

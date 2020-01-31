@@ -1,0 +1,164 @@
+// General
+// =============================================
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin visuallyhidden {
+  background-color: transparent;
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: auto;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+	white-space: nowrap;
+}
+
+@mixin link {
+  color: $color-pink;
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 400;
+  // transition: all .3s ease-in-out;
+}
+
+@mixin hover {
+  opacity: 0.85;
+}
+
+@mixin focus {
+  outline: 3px solid $color-info;
+  outline-offset: 1px;
+  opacity: 1;
+}
+
+@mixin focus--subtle {
+  outline: 1px dotted currentColor;
+  outline-offset: 2px;
+  opacity: 1;
+}
+
+@mixin disabled {
+  opacity: 0.65;
+}
+
+@mixin auto--sides {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// NB: v-center parents must be positioned relative
+// Flexbox vertical centering preferred
+@mixin v-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
+
+// Positioning 
+// =============================================
+@mixin position($position, $args) {
+  position: $position;
+  @each $o in top right bottom left {
+    $i: index($args, $o);
+    @if $i and $i + 1 <= length($args) and type-of(nth($args, $i + 1)) == number {
+      #{$o}: nth($args, $i + 1);
+    }
+  }
+  
+}
+
+@mixin absolute($args: '') {
+  @include position(absolute, $args);
+}
+
+@mixin fixed($args: '') {
+  @include position(fixed, $args);
+}
+
+@mixin relative($args: '') {
+  @include position(relative, $args);
+}
+
+
+
+// Flexbox Mixins
+// =============================================
+// * https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Mixins adjusted for IE support only
+
+@mixin flexbox {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin inline-flex {
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin flex-direction($value: row) {
+    -ms-flex-direction: $value;
+    flex-direction: $value;
+  }
+
+@mixin flex-wrap($value: nowrap) {
+    @if $value == nowrap {
+      -ms-flex-wrap: none;
+    } @else {
+      -ms-flex-wrap: $value;
+    }
+    flex-wrap: $value;
+  }
+
+@mixin flex($fg: 1, $fs: 0, $fb: auto) {
+    -ms-flex: $fg $fs $fb;
+    flex: $fg $fs $fb;
+}
+
+@mixin flex-basis($value: auto) {
+  -ms-flex-preferred-size: $value;
+  flex-basis: $value;
+}
+
+@mixin justify-content($value: flex-start) {
+    @if $value == flex-start {
+      -ms-flex-pack: start;
+    } @else if $value == flex-end {
+      -ms-flex-pack: end;
+    } @else if $value == space-between {
+      -ms-flex-pack: justify;
+    } @else if $value == space-around {
+      -ms-flex-pack: distribute;
+    } @else {
+      -ms-flex-pack: $value;
+    }
+    justify-content: $value;
+  }
+
+@mixin align-items($value: stretch) {
+    @if $value == flex-start {
+        -ms-flex-align: start;
+    } @else if $value == flex-end {
+        -ms-flex-align: end;
+    } @else {
+        -ms-flex-align: $value;
+    }
+    align-items: $value;
+}
+
+
+@mixin bootstrap-row {
+  margin-right: -15px;
+  margin-left: -15px;
+}

@@ -1,14 +1,47 @@
-h1 {
-  font-size: 30px;
-  color: purple;
-}
+/*--------------------------------
+ * Master CSS file
+--------------------------------*/
 
-button {
-  color: white;
-  width: 130px;
-  height: 50px;
-  background: purple;
-  border: 2px solid purple;
-}
+// @import 'abstracts/breakpoints';
+@import 'abstracts/media-queries';
+@import 'abstracts/variables';
+@import 'abstracts/mixins';
+@import 'abstracts/functions';
+@import 'abstracts/placeholders';
+
+// @import 'vendors/bootstrap';  // Calling bootstrap.css in page templates
+// @import 'vendors/jquery-ui';  // Unsure if we use this
+/* NB select-css is called inside layout/forms.scss  */
+
+// @import 'vendors-extensions/mq-ext';
+@import 'vendors-extensions/bootstrap-ext';
+
+@import 'base/reset'; // imports normalize and normalize-ext
+@import 'base/links';
+@import 'base/typography';
+@import 'base/lists';
+@import 'base/animations';
+
+@import 'layout/grid';
+@import 'layout/page-wrapper';
+@import 'layout/header';
+@import 'layout/navigation';
+@import 'layout/sidebar';
+@import 'layout/forms';
+@import 'layout/tables';
 
 @import 'components/buttons';
+@import 'components/feature-card';
+@import 'components/product-card';
+@import 'components/progress-bar';
+@import 'components/target-selector';
+@import 'components/slider';
+@import 'components/trustpilot';
+@import 'components/testimonials';
+@import 'components/media-item';
+@import 'components/simple-footer';
+
+
+
+@import 'overrides/trumps';
+@import 'overrides/shame';

@@ -1,0 +1,59 @@
+/*--------------------------------
+ * Link Rules
+--------------------------------*/
+
+// a,
+.link {
+  // &.bold-focus:focus {
+  //   @include focus;
+  // }
+
+  &:hover {
+    @include hover;
+  }
+
+  &:active {
+    color: $color-purple;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &:focus {
+    @include focus--subtle;
+  }
+}
+
+.link {
+  @include link;
+
+  &--has-icon {
+    text-decoration: none;
+
+    .link--has-icon__icon {
+      margin-left: $tiny-spacing-unit;
+
+      &.icon--left {
+        margin-right: $tiny-spacing-unit;
+        margin-left: 0;
+      }
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &.purple {
+    color: $color-purple;
+
+    &:hover {
+      @include hover;
+    }
+
+    &:active {
+      color: $color-pink;
+    }
+  }
+}

@@ -1,0 +1,146 @@
+/*--------------------------------
+ * Footer
+--------------------------------*/
+
+// ! NOTE ! This is a scoped component:
+// * Compiled styles are currently being copied from master.min.css 
+// * to the agency2016.css file to ensure correct rendering 
+// * even when master isn't being called on the page
+
+.container-fluid .c-simple-footer {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.c-simple-footer {
+  padding: 0;
+  background: $color-purple;
+  color: $white;
+  font-family: $font;
+
+  &__inner {
+    margin: 0 auto;
+    padding: $base-spacing-unit;
+    max-width: calc(#{map-get($breakpoints, 'medium')} + #{($base-spacing-unit * 2)} );
+    width: 100%;
+  }
+
+  .inner__section {
+    padding: 20px 0;
+  }
+
+  // Just a repeat of fukol-grid!
+  &__grid {
+    @include flexbox;
+    @include justify-content(center);
+    @include flex-wrap(wrap);
+    margin: -$base-spacing-unit;
+
+    > * {
+      padding: $base-spacing-unit;
+    }
+
+    &--small { 
+      margin: -$small-spacing-unit;
+
+      > * {
+        padding: $small-spacing-unit;
+      }
+    }
+
+    &--600 {
+      margin-right: auto;
+      margin-left: auto;
+      max-width: calc(600px + #{($page-side-padding * 2)});
+    }
+  }
+
+  .one-whole {
+    @include flex-basis(100%);
+    max-width: 100%;
+  }
+  .one-quarter {
+    @include flex-basis(25%);
+    max-width: 25%;
+  }
+
+  .one-fifth--small-up {
+    @include media-up(small) {
+      @include flex-basis(20%);
+      max-width: 20%;
+    }
+  }
+
+  .one-half--small-up {
+    @include media-up(small) {
+      @include flex-basis(50%);
+      max-width: 50%;
+    }
+  }
+
+  .one-eighth--medium-up {
+    @include media-up(medium) {
+      @include flex-basis(12.5%);
+      max-width: 12.5%;
+    }
+  }
+
+  &__main-text {
+    @include auto--sides;
+    text-align: center;
+    font-size: $zeta;
+
+    &:last-of-type,
+    p:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__payment-images {
+    @include justify-content(center);
+    text-align: center;
+  }
+
+  a,
+  .link {
+    color: white;
+    text-decoration: underline;
+
+    &:hover {
+      @include hover;
+    }
+
+    &:active {
+      color: lighten($color-pink, 35);
+    }
+  }
+
+  &--terms {
+    background: $white;
+    color: $color-greytext;
+    text-align: left;
+    font-size: $small-font-size;
+    line-height: $base-line-height;
+
+    a,
+    .link {
+      @include link;
+      color: $color-greytext;
+
+      &:hover {
+        @include hover;
+        color: $color-greytext;
+      }
+
+      &:active {
+        color: darken($color-greytext, 5);
+      }
+
+      &:focus {
+        @include focus--subtle;
+        color: $color-greytext;
+        text-decoration: underline;
+      }
+    }
+  }
+}

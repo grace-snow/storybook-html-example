@@ -1,0 +1,39 @@
+/*--------------------------------
+ * List Rules
+--------------------------------*/
+
+ul,
+ol {
+  margin: 0 0 $base-spacing-unit 0;
+  padding-left: 1.5em;
+  line-height: $small-line-height;
+
+  li {
+    position: relative;
+    margin-bottom: 0.5em;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .no-list-style {
+    list-style: none;
+  }
+}
+
+.special-list {
+  li,
+  .special-list__item {
+    position: relative;
+  }
+
+  &--circled-checks .special-list__item:before,
+  &--circled-checks li:before {
+    @include position(absolute, top 0 left -1.5em);
+    width: 1.25em;
+    height: 1.25em;
+    background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 16 16\'%3E%3Ctitle%3Echeck copy%3C/title%3E%3Cg id=\'Layer_2\' data-name=\'Layer 2\'%3E%3Ccircle cx=\'8\' cy=\'8\' r=\'7.5\' style=\'fill:%23552773\'/%3E%3Cline x1=\'6.77\' y1=\'11.34\' x2=\'4.75\' y2=\'9.32\' style=\'fill:none;stroke:%23fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px\'/%3E%3Cline x1=\'6.79\' y1=\'11.36\' x2=\'11.25\' y2=\'4.64\' style=\'fill:none;stroke:%23fff;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px\'/%3E%3C/g%3E%3C/svg%3E');
+    content: '';
+  }
+}

@@ -1,0 +1,226 @@
+/*--------------------------------
+ * Trumps / Helpers
+--------------------------------*/
+
+// ! Always import this last in the main scss file!
+// * Helper classes, often, designed to override stles
+// * e.g. positioning helpers that can be used on any element
+
+// Positioning Helpers 
+// =============================================
+.position--relative {
+  position: relative;
+}
+.position--absolute {
+  position: absolute;
+}
+
+.v-center {
+  @include v-center;
+}
+
+
+// Misc / General Helpers 
+// =============================================
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.line-height--small {
+  line-height: $small-line-height;
+}
+.line-height--1 {
+  line-height: $no-line-height;
+}
+
+.weight--normal {
+  font-weight: $weight-normal;
+}
+.weight--bold {
+  font-weight: $weight-bold;
+}
+
+.ui--border--bottom {
+  border-bottom: 2px solid $ui-grey;
+}
+
+
+// Icon Helpers
+// =============================================
+.chevron.chevron--left {
+  transform: rotate(180deg);
+}
+
+
+
+// Color Helpers
+// =============================================
+.bg--grey {
+  background: $bg-grey;
+}
+.bg--pink {
+  background: $bg-pink;
+  color: $color-purple;
+}
+.bg--purple {
+  background: $bg-purple;
+  color: $white;
+}
+.bg--white {
+  background: $white;
+}
+
+.color--pink {
+  color: $color-pink;
+}
+.color--purple {
+  color: $color-purple;
+}
+
+.color--positive {
+  color: $color-positive;
+}
+.color--negative {
+  color: $color-negative;
+}
+.color--warning {
+  color: $color-warning;
+}
+
+.bg--pink .color--pink,
+.bg--grey .color--pink {
+  color: $color-pinktext;
+}
+
+.bg--purple h1,
+.bg--purple h2,
+.bg--purple h3,
+.bg--purple h4,
+.bg--purple h5,
+.bg--purple h6 {
+  color: $white;
+}
+
+
+// Width Helpers
+// =============================================
+.max-width--page {
+  max-width: $max-page-width;
+}
+
+// breakpoints map lives in _media-queries.scss
+@each $key, $value in $breakpoints {
+  .max-width--#{$key} {
+    max-width: $value;
+  }
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+// Display helpers
+// =============================================
+
+.display--none {
+  display: none;
+}
+
+.sr-only,
+.visuallyhidden,
+.skipto {
+  @include visuallyhidden;
+}
+
+.flex {
+  @include flexbox;
+}
+
+.flex--row {
+  @include flex-direction(row);
+}
+.flex--column {
+  @include flex-direction(column);
+}
+
+.flex--align--center {
+  @include align-items(center);
+}
+.flex--align--start {
+  @include align-items(flex-start);
+}
+.flex--align--end {
+  @include align-items(flex-end);
+}
+
+.flex--justify--center {
+  @include justify-content(center);
+}
+.flex--justify--between {
+  @include justify-content (space-between);
+}
+.flex--justify--evenly {
+  @include justify-content (flex-start);
+}
+.flex--justify--start {
+  @include justify-content (flex-start);
+}
+.flex--justify--end {
+  @include justify-content (flex-end);
+}
+
+.flex--wrap {
+  @include flex-wrap(wrap);
+}
+.flex--nowrap {
+  @include flex-wrap(nowrap);
+}
+
+
+/**
+ * Utility classes to put specific spacing values onto elements. The below loop
+ * will generate us a suite of classes like:
+ *
+ *   .margin-top {}
+ *   .padding-left--large {}
+ *   .margin-right--small {}
+ *   .padding {}
+ *   .padding-right--none {}
+ *   .padding-horizontal {}
+ *   .padding-vertical--small {}
+*/
+
+$spacing-directions: (
+  null: null,
+  '-top': 				'-top',
+  '-right': 			'-right',
+  '-bottom': 			'-bottom',
+  '-left': 				'-left',
+  '-horizontal':	'-left' '-right',
+  '-vertical': 		'-top' '-bottom',
+) !default;
+$spacing-properties: (
+  'padding': 'padding',
+  'margin': 'margin',
+) !default;
+$spacing-sizes: (
+  null: $base-spacing-unit,
+  '--tiny': $tiny-spacing-unit,
+  '--small': $small-spacing-unit,
+  '--large': $large-spacing-unit,
+  '--huge': $huge-spacing-unit,
+  '--none': 0
+) !default;
+
+@each $property-key, $property-value in $spacing-properties {
+  @each $direction-key, $direction-value in $spacing-directions {
+    @each $size-key, $size-value in $spacing-sizes {
+      .#{$property-key}#{$direction-key}#{$size-key} {
+        @each $direction in $direction-value {
+          #{$property-value}#{$direction}: $size-value;
+        }
+      }
+    }
+  }
+}

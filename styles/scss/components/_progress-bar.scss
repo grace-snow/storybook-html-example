@@ -1,0 +1,81 @@
+/*--------------------------------
+ * Progress Bar
+--------------------------------*/
+
+// * Used in easy sign up journey
+
+.steps {
+  @include flexbox;
+  @include justify-content(space-between);
+  @include align-items(center);
+  position: relative;
+  color: $color-purple;
+
+  &__title {
+    flex-grow: 1;
+  }
+
+  > * {
+    margin: 0;
+    padding: $small-spacing-unit 0;
+    font-weight: $weight-bold;
+    font-size: $h5-size;
+    line-height: 1.2;
+  }
+
+  > *:first-child {
+    padding-right: $tiny-spacing-unit;
+  }
+
+  &:after {
+    @include position(absolute, bottom 0 left 0);
+    height: 3px;
+    background-color: $color-pink;
+    content: '';
+  }
+
+  &--2:after,
+  &--2.step-1:after {
+    width: 50%;
+  }
+
+  &--3:after,
+  &--3.step-1:after {
+    width: 33.333%;
+  }
+  &--3.step-2:after {
+    width: 66.666%;
+  }
+
+  &--4:after,
+  &--4.step-1:after {
+    width: 25%;
+  }
+  &--4.step-2:after {
+    width: 50%;
+  }
+  &--4.step-3:after {
+    width: 75%;
+  }
+
+  &--5:after,
+  &--5.step-1:after {
+    width: 20%;
+  }
+  &--5.step-2:after {
+    width: 40%;
+  }
+  &--5.step-3:after {
+    width: 60%;
+  }
+  &--5.step-4:after {
+    width: 70%;
+  }
+
+  &--2.step-2:after,
+  &--3.step-3:after,
+  &--4.step-4:after,
+  &--5.step-5:after {
+    width: 100%;
+  }
+}

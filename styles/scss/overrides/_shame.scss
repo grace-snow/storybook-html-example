@@ -1,0 +1,32 @@
+/*--------------------------------
+ * Hacks that make us sad :(
+--------------------------------*/
+
+/* Inline #14 | https://developer.getpark.co.uk/budgeting/easysignup */
+.header-head {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.navbar--no-secondary-nav,
+.navbar.secondary-nav {
+  display: none;
+}
+
+.modal__btn {
+  margin-top: $small-spacing-unit;
+  width: 100%;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
+.footer-line.margin-left {
+  margin-left: 0 !important;
+  padding: 0 !important;
+}
+
+.section__footer-trust {
+  padding: $base-spacing-unit;
+}

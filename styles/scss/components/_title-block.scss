@@ -1,0 +1,45 @@
+/*--------------------------------
+ * Title blocks
+--------------------------------*/
+
+// titles with purple underline used on pages and sidebars
+// sometimes extra info is included, like account number
+
+.page-title-block {
+  @include flexbox;
+  @include flex-direction(column);
+  @include media-up(medium) {
+    @include flex-direction(row);
+    @include justify-content(space-between);
+    @include align-items(flex-end);
+    border-bottom: 1px solid $color-purple;
+  }
+  margin: $small-spacing-unit 0 $base-spacing-unit 0;
+  padding-bottom: $tiny-spacing-unit;
+
+  > * {
+    line-height: $tiny-line-height;
+  }
+
+  &__title {
+    @include media-up(medium) {
+      margin: 0;
+      font-size: 26px;        // find and use var
+    }
+    margin-bottom: $small-spacing-unit;
+    color: $color-purple;
+    font-weight: weight-bold;
+    font-size: 23px;            // find and use var
+  }
+
+  &__subtitle {
+    @include media-up(medium) {
+      margin: 0;
+      font-size: 15px;        // find and use var
+    }
+    margin-bottom: $small-spacing-unit;
+    color: $color-greytext;
+    font-weight: $weight-normal;
+    font-size: $base-font-size !important;
+  }
+}

@@ -1,0 +1,29 @@
+/*--------------------------------
+ * Media Item
+--------------------------------*/
+// Icon left - content right - no wrapping - optional close/dismiss toggle top right
+
+.media-item {
+  @include flexbox;
+  @include align-items(flex-start);
+  position: relative;
+
+  &--padding {
+    padding: $small-spacing-unit;
+  }
+
+  &__icon {
+    margin-right: $small-spacing-unit;
+  }
+
+  &__content {
+    flex-grow: 1;
+  }
+
+  &__dismiss {
+    position: absolute;
+    top: $tiny-spacing-unit;
+    right: $tiny-spacing-unit;
+    margin: $tiny-spacing-unit;
+  }
+}
